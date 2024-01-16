@@ -1,4 +1,4 @@
-{
+module.exports = {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
   "overrides": [
@@ -6,7 +6,8 @@
       "files": ["*.ts"],
       "parserOptions": {
         "project": ["tsconfig.json"],
-        "createDefaultProgram": true
+        "createDefaultProgram": true,
+        "tsconfigRootDir": __dirname
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
@@ -33,8 +34,26 @@
             "type": "attribute",
             "prefix": "app",
             "style": "camelCase"
-          }
-        ]
+          },
+        ],
+        "jsdoc/newline-after-description": "off",
+        "max-len": ["error", {
+          "code": 200,
+          "ignoreComments": true,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreTrailingComments": true,
+          "ignoreUrls": true
+        }],
+        "no-trailing-spaces": ["error", {
+            "ignoreComments": true,
+            "skipBlankLines": true
+        }],
+        "no-underscore-dangle": "off",
+        "semi": ["error", "always"],
+        "semi-style": "error",
+        "semi-spacing": "error",
       }
     },
     {
