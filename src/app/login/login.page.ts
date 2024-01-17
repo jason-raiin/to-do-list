@@ -29,10 +29,10 @@ export class LoginPage {
 
   signUp() {
     const data = this.form.getRawValue();
-    const user = new User();
+    const user = new Parse.User();
     user.setUsername(data.username as string);
     user.setPassword(data.password as string);
-    user.tasks = Task.defaultTasks;
+    user.set('tasks', Task.defaultTasks);
 
     user.signUp().then((result) => {
       this.router.navigate(['/home']);

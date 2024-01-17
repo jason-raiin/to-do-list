@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import * as Parse from 'parse';
+import { Task } from 'src/services/task.service';
+import { User } from 'src/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,18 @@ import * as Parse from 'parse';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  readonly username: string = Parse.User.current()?.getUsername() || '';
+  user: User = User.current() || new User();
+  readonly username: string = this.user.getUsername() || '';
+  tasks: Task[] = this.user.get('tasks');
+
   readonly today: number = Date.now();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    console.log(this.tasks);
+  }
 
   logOut() {
-    Parse.User.logOut();
+    User.logOut();
     this.router.navigate(['login']);
   }
 }
