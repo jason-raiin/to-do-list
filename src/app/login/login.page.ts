@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
+import { Task } from 'src/services/task.service';
+import { User } from 'src/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +29,10 @@ export class LoginPage {
 
   signUp() {
     const data = this.form.getRawValue();
-    const user = new Parse.User();
-    user.set('username', data.username);
-    user.set('password', data.password);
+    const user = new User();
+    user.setUsername(data.username as string);
+    user.setPassword(data.password as string);
+    user.tasks = Task.defaultTasks;
 
     user.signUp().then((result) => {
       this.router.navigate(['/home']);

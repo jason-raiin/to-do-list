@@ -14,7 +14,7 @@ export class Task extends Parse.Object{
     return task;
   }
 
-  static defaultTasks() {
+  static get defaultTasks() {
     return [
         Task.create('Pay the bills', 1705539600),
         Task.create('Wash the dishes', 1705341600),
