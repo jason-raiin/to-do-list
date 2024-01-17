@@ -1,8 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-grid style="padding-left: 1%; padding-right: 1%">
+      <ion-row style="align-items: center;">
+        <ion-col>
+          <ion-label> 
+            <h1>Hello, <ion-text color="primary">{{username}}</ion-text>!</h1>
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="ion-text-center">
+            <h1>Today</h1>
+            <p>{{today | date:'fullDate'}}</p>
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-button fill="solid" color="medium" style="float: right;">Log Out</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
