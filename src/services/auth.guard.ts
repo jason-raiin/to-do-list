@@ -12,14 +12,3 @@ export const authGuard = () => {
   // Redirect to the login page
   return router.parseUrl('/login');
 };
-
-export const loginGuard = () => {
-    const router = inject(Router);
-  
-    if (!Parse.User.current()) {
-      return true;
-    }
-  
-    // Redirect to the login page
-    return router.parseUrl('/home');
-  };
