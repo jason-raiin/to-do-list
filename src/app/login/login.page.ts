@@ -7,12 +7,18 @@ import * as Parse from 'parse';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit{
   username: string = '';
   password: string = '';
   error: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.username = '';
+    this.password = '';
+    this.error = false;
+  }
 
   logIn() {
     Parse.User.logIn(this.username, this.password).then((result) => {
@@ -22,17 +28,24 @@ export class LoginPage {
     });
   }
 
-  async signUp() {
+  signUp() {
     const user = new Parse.User();
     user.set('username', this.username);
     user.set('password', this.password);
 
     user.signUp().then((result) => {
+      this.clear();
       this.router.navigate(['/home']);
     }).catch((error) => {
       this.error = true;
       alert("Username is taken!");
     });
+  }
+
+  clear() {
+    this.username = '';
+    this.password = '';
+    this.error = false;
   }
 
 }
