@@ -11,26 +11,28 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
+  <form [formGroup]="form">
     <ion-input 
       label="Username" 
       labelPlacement="floating" 
-      errorText="Username is already taken"
-      [ngClass]="{'ng-invalid' : error}"
-      [(ngModel)]="username"
+      errorText="Username is required"
+      formControlName="username"
     ></ion-input>
-  </ion-item>
+    <ion-input 
+      label="Password" 
+      labelPlacement="floating" 
+      errorText="Password is required"
+      formControlName="password"
+      type="password" 
+    ></ion-input>
+  </form>
 
-  <ion-item>
-    <ion-input label="Password" labelPlacement="floating" [(ngModel)]="password" type="password" ></ion-input>
-  </ion-item>
+  <ion-button margin-right color="secondary" (click)="signUp()" [disabled]="form.invalid">
+    SIGN UP
+  </ion-button>
 
-    <ion-button ion-button margin-right color="secondary" (click)="signUp()">
-      SIGN UP
-    </ion-button>
-
-    <ion-button ion-butto (click)="logIn()">
-      LOG IN
-    </ion-button>
+  <ion-button (click)="logIn()">
+    LOG IN
+  </ion-button>
 
 </ion-content>
