@@ -27,12 +27,16 @@
     *ngFor="let task of taskList.list; let i = index" 
     [id]="i"
     color="light" 
-    style="width: 50%; margin-left: auto; margin-right: auto;" 
-    [style]="task.complete ? 'opacity: 50%; text-decoration:  line-through' : ''"
+    style="width: 50%; margin-left: auto; margin-right: auto; padding: 0.5%; border-radius: 15px;" 
+    [style]="task.complete ? 'opacity: 50%; text-decoration: line-through' : ''"
   >
     <ion-card-header>
       <ion-card-title color="dark">{{task.title}}</ion-card-title>
-      <ion-card-subtitle>Due {{task.date | date:'fullDate'}}</ion-card-subtitle>
+      <ion-card-subtitle>
+        <ion-label [color]="task.date < today ? 'danger' : task.date === today ? 'warning' : 'dark' ">
+          Due {{task.date | date:'fullDate'}}
+        </ion-label>
+      </ion-card-subtitle>
     </ion-card-header>
 
     <ion-row>
@@ -51,7 +55,7 @@
 
   </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin:1%">
     <ion-fab-button (click)="addTask()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

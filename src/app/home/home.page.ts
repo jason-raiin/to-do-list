@@ -15,9 +15,11 @@ export class HomePage {
   user: User = User.getCurrent();
   username: string = this.user.getUsername() as string;
   taskList: TaskList = this.user.taskList;
-  readonly today: number = Date.now();
+  readonly today: number = new Date().setHours(0,0,0,0);
 
-  constructor(private router: Router, private _taskListService: TaskListService) {}
+  constructor(private router: Router, private _taskListService: TaskListService) {
+    console.log(this.today);
+  }
 
   ionViewWillEnter() {
     this.user = User.getCurrent();
