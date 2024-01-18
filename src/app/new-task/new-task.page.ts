@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Task } from 'src/services/task.service';
 import * as Parse from 'parse';
+import { parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-new-task',
@@ -23,11 +24,17 @@ export class NewTaskPage {
   }
 
   submit() {
+    const user = Parse.User.current() as Parse.User;
+
     const { title, date } = this.form.getRawValue();
-    const task = new Task(title as string, parseInt(date as string));
-    const tasks = Parse.User.current()?.get('tasks') as Task[];
+    const dateMilliseconds= parseISO(date as string).getTime();
+    const task = new Task(title as string, dateMilliseconds);
+
+    const tasks = user.get('tasks') as Task[];
     tasks.push(task);
-    Parse.User.current()?.set('tasks',tasks);
+    user.set('tasks',tasks);
+    user.save();
+
     this.router.navigate(['home']);
   }
 
