@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Task } from 'src/services/task.service';
+import { TaskService } from 'src/app/services/task.service';
 import * as Parse from 'parse';
 import { parseISO } from 'date-fns';
-import { TaskList } from 'src/services/taskList.service';
+import { TaskListService } from 'src/app/services/taskList.service';
+import { User } from '../services/user.service';
 
 @Component({
   selector: 'app-new-task',
@@ -17,7 +18,7 @@ export class NewTaskPage {
     date: new FormControl<string>('', [Validators.required]),
   });
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _taskService: TaskService, private _taskListService: TaskListService) { }
 
 
   cancel() {
@@ -25,19 +26,17 @@ export class NewTaskPage {
   }
 
   submit() {
-    const user = Parse.User.current() as Parse.User;
+    const user = User.getCurrent();
 
     const { title, date } = this.form.getRawValue();
     const dateMilliseconds= parseISO(date as string).getTime();
-    const task = new Task(title as string, dateMilliseconds);
+    const task = this._taskService.create(title as string, dateMilliseconds);
 
-    const tasks = user.get('tasks') as TaskList;
-    console.log(tasks.addTask);
-    tasks.addTask(task);
+    const taskList = user.taskList;
+    this._taskListService.addTask(taskList, task);
     
-    user.set('tasks', tasks);
-    user.save();
-
+    user.taskList = taskList;
+    
     this.router.navigate(['home']);
   }
 

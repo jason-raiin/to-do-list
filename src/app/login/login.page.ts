@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
-import { TaskList } from 'src/services/taskList.service';
+import { User } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +18,8 @@ export class LoginPage {
   constructor(private router: Router) {}
 
   logIn() {
-    const data = this.form.getRawValue();
-    Parse.User.logIn(data.username as string, data.password as string).then((result) => {
+    const { username, password } = this.form.getRawValue();
+    Parse.User.logIn(username as string, password as string).then((result) => {
       this.form.reset();
       this.router.navigate(['/home']);
     }).catch((error) => {
@@ -28,11 +28,8 @@ export class LoginPage {
   }
 
   signUp() {
-    const data = this.form.getRawValue();
-    const user = new Parse.User();
-    user.setUsername(data.username as string);
-    user.setPassword(data.password as string);
-    user.set('tasks', TaskList.defaultTasks);
+    const { username, password } = this.form.getRawValue();
+    const user = User.create(username as string, password as string);
 
     user.signUp().then((result) => {
       this.form.reset();
