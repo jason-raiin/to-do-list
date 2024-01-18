@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { TaskService } from 'src/app/services/task.service';
 import { TaskListService } from 'src/app/services/taskList.service';
 import { User } from 'src/app/services/user.service';
 import { TaskList } from '../models/taskList.model';
@@ -12,15 +11,22 @@ import { Task } from '../models/task.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  user: User = User.current() || new User();
-  readonly username: string = this.user.getUsername() || '';
-  taskList: TaskList = this.user.get('taskList');
+  user: User = User.getCurrent();
+  username: string = this.user.getUsername() as string;
+  taskList: TaskList = this.user.taskList;
   readonly today: number = Date.now();
 
-  constructor(private router: Router, private _taskService: TaskService, private _taskListService: TaskListService) {}
+  constructor(private router: Router, private _taskListService: TaskListService) {}
+
+  ionViewWillEnter() {
+    this.user = User.getCurrent();
+    this.username = this.user.getUsername() as string;
+    this.taskList = this.user.taskList;
+  }
 
   logOut() {
     User.logOut();
+    this.user = User.create('', '');
     this.router.navigate(['login']);
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as Parse from 'parse';
 import { User } from '../services/user.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class LoginPage {
 
   logIn() {
     const { username, password } = this.form.getRawValue();
-    Parse.User.logIn(username as string, password as string).then((result) => {
+    User.logIn(username as string, password as string).then((result) => {
       this.form.reset();
       this.router.navigate(['/home']);
     }).catch((error) => {

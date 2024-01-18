@@ -34,4 +34,4 @@ export class User extends Parse.User {
 
 }
 
-Parse.Object.registerSubclass('User', User);
+Parse.Object.registerSubclass('_User', User);
