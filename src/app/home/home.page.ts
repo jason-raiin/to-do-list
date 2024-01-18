@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Task } from 'src/services/task.service';
+import { TaskList } from 'src/services/taskList.service';
 import { User } from 'src/services/user.service';
 
 @Component({
@@ -11,8 +12,7 @@ import { User } from 'src/services/user.service';
 export class HomePage {
   user: User = User.current() || new User();
   readonly username: string = this.user.getUsername() || '';
-  tasks: Task[] = this.user.get('tasks');
-
+  taskList: TaskList = this.user.get('tasks');
   readonly today: number = Date.now();
 
   constructor(private router: Router) {}
@@ -27,18 +27,18 @@ export class HomePage {
   }
 
   delete(task: Task) {
-    const tasks = this.user.get('tasks') as Task[];
-    tasks.splice(tasks.indexOf(task), 1);
-    this.user.set('tasks', tasks);
+    const taskList = this.user.get('tasks') as TaskList;
+    taskList.removeTask(task);
+    
+    this.user.set('tasks', taskList);
     this.user.save();
   }
 
   complete(task: Task) {
-    const tasks = this.user.get('tasks') as Task[];
-    tasks.splice(tasks.indexOf(task), 1);
-    task.toggleComplete();
-    tasks.push(task);
-    this.user.set('tasks', tasks);
+    const taskList = this.user.get('tasks') as TaskList;
+    taskList.completeTask(task);
+
+    this.user.set('tasks', taskList);
     this.user.save();
   }
 }

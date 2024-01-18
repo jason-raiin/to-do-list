@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
-import { Task } from 'src/services/task.service';
-import { User } from 'src/services/user.service';
+import { TaskList } from 'src/services/taskList.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +20,7 @@ export class LoginPage {
   logIn() {
     const data = this.form.getRawValue();
     Parse.User.logIn(data.username as string, data.password as string).then((result) => {
+      this.form.reset();
       this.router.navigate(['/home']);
     }).catch((error) => {
       alert("Invalid credentials!");
@@ -32,9 +32,10 @@ export class LoginPage {
     const user = new Parse.User();
     user.setUsername(data.username as string);
     user.setPassword(data.password as string);
-    user.set('tasks', Task.defaultTasks);
+    user.set('tasks', TaskList.defaultTasks);
 
     user.signUp().then((result) => {
+      this.form.reset();
       this.router.navigate(['/home']);
     }).catch((error) => {
       alert("Username is taken!");

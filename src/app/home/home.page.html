@@ -23,7 +23,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card *ngFor="let task of tasks; let i = index" [color]="task.complete ? 'success' : 'light'" style="width: 50%; margin-left: auto; margin-right: auto; ">
+  <ion-card *ngFor="let task of taskList.list; let i = index" [color]="task.complete ? 'success' : 'light'" style="width: 50%; margin-left: auto; margin-right: auto; ">
     <ion-card-header>
       <ion-card-title color="dark">{{task.title}}</ion-card-title>
       <ion-card-subtitle>Due {{task.date | date:'fullDate'}}</ion-card-subtitle>

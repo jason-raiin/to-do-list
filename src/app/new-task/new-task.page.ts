@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Task } from 'src/services/task.service';
 import * as Parse from 'parse';
 import { parseISO } from 'date-fns';
+import { TaskList } from 'src/services/taskList.service';
 
 @Component({
   selector: 'app-new-task',
@@ -30,9 +31,11 @@ export class NewTaskPage {
     const dateMilliseconds= parseISO(date as string).getTime();
     const task = new Task(title as string, dateMilliseconds);
 
-    const tasks = user.get('tasks') as Task[];
-    tasks.push(task);
-    user.set('tasks',tasks);
+    const tasks = user.get('tasks') as TaskList;
+    console.log(tasks.addTask);
+    tasks.addTask(task);
+    
+    user.set('tasks', tasks);
     user.save();
 
     this.router.navigate(['home']);
