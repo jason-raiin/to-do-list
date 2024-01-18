@@ -25,4 +25,11 @@ export class HomePage {
   addTask() {
     this.router.navigate(['new']);
   }
+
+  delete(task: Task) {
+    const tasks = this.user.get('tasks') as Task[];
+    tasks.splice(tasks.indexOf(task), 1);
+    this.user.set('tasks', tasks);
+    this.user.save();
+  }
 }
