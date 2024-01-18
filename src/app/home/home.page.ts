@@ -32,4 +32,13 @@ export class HomePage {
     this.user.set('tasks', tasks);
     this.user.save();
   }
+
+  complete(task: Task) {
+    const tasks = this.user.get('tasks') as Task[];
+    tasks.splice(tasks.indexOf(task), 1);
+    task.toggleComplete();
+    tasks.push(task);
+    this.user.set('tasks', tasks);
+    this.user.save();
+  }
 }

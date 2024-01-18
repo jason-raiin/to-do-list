@@ -18,4 +18,8 @@ export class Task {
         new Task('Feed the dog', 1705413600000),
     ];
   }
+
+  toggleComplete() {
+    this.complete = !this.complete;
+  }
 }
