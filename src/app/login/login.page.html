@@ -5,13 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Log in to get going</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div style="width: 70%; margin: auto; text-align: center;">
+  <div style="width: 50%; margin: auto; text-align: center;">
     <form [formGroup]="form" style="text-align: left;">
       <ion-input 
         label="Username" 
@@ -32,7 +26,7 @@
       SIGN UP
     </ion-button>
 
-    <ion-button (click)="logIn()" style="padding: 0.5%">
+    <ion-button (click)="logIn()" [disabled]="form.invalid" style="padding: 0.5%">
       LOG IN
     </ion-button>
   </div>
