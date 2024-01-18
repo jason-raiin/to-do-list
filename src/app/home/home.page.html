@@ -23,29 +23,34 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card *ngFor="let task of taskList.list; let i = index" [color]="task.complete ? 'success' : 'light'" style="width: 50%; margin-left: auto; margin-right: auto; ">
+  <ion-card 
+    *ngFor="let task of taskList.list; let i = index" 
+    [id]="i"
+    color="light" 
+    style="width: 50%; margin-left: auto; margin-right: auto;" 
+    [style]="task.complete ? 'opacity: 50%; text-decoration:  line-through' : ''"
+  >
     <ion-card-header>
       <ion-card-title color="dark">{{task.title}}</ion-card-title>
       <ion-card-subtitle>Due {{task.date | date:'fullDate'}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-button color="tertiary" style="width: 100%" (click)="complete(task)">
-          <ion-icon name="checkmark-circle-outline" ></ion-icon>
-          Completed
+      <ion-col class="ion-text-left" style="padding-left:2%">
+        <ion-button [color]="task.complete ? 'medium' : 'success'" (click)="complete(task)">
+          <ion-icon [name]="task.complete ? 'close-circle-outline' : 'checkmark-circle-outline'" ></ion-icon>
         </ion-button>
       </ion-col>
 
-      <ion-col class="ion-text-center">
-        <ion-button color="medium" style="width: 100%" (click)="delete(task)">
+      <ion-col class="ion-text-right" style="padding-right:2%">
+        <ion-button color="danger" (click)="delete(task, i)">
           <ion-icon name="trash-outline"></ion-icon> 
-          Delete
         </ion-button>
       </ion-col>
     </ion-row>
 
   </ion-card>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addTask()">
       <ion-icon name="add"></ion-icon>

@@ -4,6 +4,7 @@ import { TaskListService } from 'src/app/services/taskList.service';
 import { User } from 'src/app/services/user.service';
 import { TaskList } from '../models/taskList.model';
 import { Task } from '../models/task.model';
+import { Animation, createAnimation } from '@ionic/core';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,7 @@ export class HomePage {
     this.router.navigate(['new']);
   }
 
-  delete(task: Task) {
+  delete(task: Task, id: number) {
     const taskList = this.taskList;
     this._taskListService.removeTask(taskList, task);
     
