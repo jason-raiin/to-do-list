@@ -23,22 +23,26 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-card *ngFor="let task of tasks; let i = index">
+  <ion-card *ngFor="let task of tasks; let i = index" style="width: 50%; margin-left: auto; margin-right: auto; ">
     <ion-card-header>
-      <ion-card-title color="primary">{{task.title}}</ion-card-title>
+      <ion-card-title color="dark">{{task.title}}</ion-card-title>
       <ion-card-subtitle>Due {{task.date | date:'fullDate'}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-row>
-      <ion-button>
-        <ion-icon name="checkmark-circle-outline" ></ion-icon>
-        Completed
-      </ion-button>
+      <ion-col class="ion-text-center">
+        <ion-button color="tertiary" style="width: 100%">
+          <ion-icon name="checkmark-circle-outline" ></ion-icon>
+          Completed
+        </ion-button>
+      </ion-col>
 
-      <ion-button>
-        <ion-icon name="trash-outline"></ion-icon> 
-        Cancel
-      </ion-button>
+      <ion-col class="ion-text-center">
+        <ion-button color="medium" style="width: 100%">
+          <ion-icon name="trash-outline"></ion-icon> 
+          Delete
+        </ion-button>
+      </ion-col>
     </ion-row>
 
   </ion-card>
