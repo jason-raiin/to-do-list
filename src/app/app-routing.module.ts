@@ -18,6 +18,10 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
+  {
+    path: 'new',
+    loadChildren: () => import('./new-task/new-task.module').then( m => m.NewTaskPageModule)
+  },
 ];
 
 @NgModule({

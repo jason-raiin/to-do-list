@@ -21,4 +21,8 @@ export class HomePage {
     User.logOut();
     this.router.navigate(['login']);
   }
+
+  addTask() {
+    this.router.navigate(['new']);
+  }
 }
