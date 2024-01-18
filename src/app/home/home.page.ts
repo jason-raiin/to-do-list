@@ -15,9 +15,7 @@ export class HomePage {
 
   readonly today: number = Date.now();
 
-  constructor(private router: Router) {
-    console.log(this.tasks);
-  }
+  constructor(private router: Router) {}
 
   logOut() {
     User.logOut();

@@ -13,9 +13,9 @@ export class Task {
 
   static get defaultTasks() {
     return [
-        new Task('Pay the bills', 1705539600),
-        new Task('Wash the dishes', 1705341600),
-        new Task('Feed the dog', 1705413600),
+        new Task('Pay the bills', 1705539600000),
+        new Task('Wash the dishes', 1705341600000),
+        new Task('Feed the dog', 1705413600000),
     ];
   }
 }
