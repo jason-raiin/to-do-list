@@ -2,6 +2,7 @@ import * as Parse from "parse";
 import { Injectable } from "@angular/core";
 import { TaskList } from "../models/taskList.model";
 import { TaskListService } from "./taskList.service";
+import { Task } from "../models/task.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class User extends Parse.User {
     const user = new User();
     user.setUsername(username);
     user.setPassword(password);
-    user.taskList = TaskListService.defaultTasks;
+    user.set('taskList', TaskListService.defaultTasks);
     return user;
   }
 
@@ -30,6 +31,7 @@ export class User extends Parse.User {
 
   set taskList(taskList: TaskList) {
     this.set('taskList', taskList);
+    this.save();
   }
 
 }

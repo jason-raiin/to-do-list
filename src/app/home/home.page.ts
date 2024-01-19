@@ -17,9 +17,7 @@ export class HomePage {
   taskList: TaskList = this.user.taskList;
   readonly today: number = new Date().setHours(0,0,0,0);
 
-  constructor(private router: Router, private _taskListService: TaskListService) {
-    console.log(this.today);
-  }
+  constructor(private router: Router, private _taskListService: TaskListService) {}
 
   ionViewWillEnter() {
     this.user = User.getCurrent();
@@ -37,19 +35,15 @@ export class HomePage {
     this.router.navigate(['new']);
   }
 
-  delete(task: Task, id: number) {
-    const taskList = this.taskList;
-    this._taskListService.removeTask(taskList, task);
+  delete(task: Task) {
+    this._taskListService.removeTask(this.taskList, task);
     
-    this.user.taskList = taskList;
     this.user.save();
   }
 
   complete(task: Task) {
-    const taskList = this.taskList;
-    this._taskListService.completeTask(taskList, task);
+    this._taskListService.completeTask(this.taskList, task);
 
-    this.user.taskList = taskList;
     this.user.save();
   }
 }

@@ -32,14 +32,11 @@ export class NewTaskPage {
     const { title, date } = this.form.getRawValue();
     const dateMilliseconds= parseISO(date as string).setHours(0,0,0,0);
     const task = this._taskService.create(title as string, dateMilliseconds);
-    console.log(dateMilliseconds);
 
     const taskList = user.taskList;
     this._taskListService.addTask(taskList, task);
     user.save();
     
-    user.taskList = taskList;
-
     this.form.reset();
     this.router.navigate(['home']);
   }
