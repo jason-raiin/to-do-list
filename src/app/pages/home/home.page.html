@@ -24,7 +24,7 @@
 <ion-content [fullscreen]="true">
 
   <ion-card 
-    *ngFor="let task of taskList.list; let i = index" 
+    *ngFor="let task of taskList?.list; let i = index" 
     [id]="i"
     color="light" 
     style="width: 50%; margin-left: auto; margin-right: auto; padding: 0.5%; border-radius: 15px;" 

@@ -4,7 +4,6 @@ import { TaskListService } from 'src/app/services/taskList/taskList.service';
 import { User } from 'src/app/services/user/user.service';
 import { TaskList } from '../../models/taskList.model';
 import { Task } from '../../models/task.model';
-import { Animation, createAnimation } from '@ionic/core';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +12,9 @@ import { Animation, createAnimation } from '@ionic/core';
 })
 export class HomePage {
   user: User = User.getCurrent();
-  username: string = this.user.getUsername() as string;
-  taskList: TaskList = this.user.taskList;
-  readonly today: number = new Date().setHours(0,0,0,0);
+  username: string = this.user?.getUsername() as string;
+  taskList: TaskList = this.user?.taskList;
+  readonly today: number = new Date().setHours(0, 0, 0, 0);
 
   constructor(private router: Router, private _taskListService: TaskListService) {}
 
