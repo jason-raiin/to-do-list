@@ -1,8 +1,8 @@
 import * as Parse from "parse";
 import { Injectable } from "@angular/core";
-import { TaskList } from "../models/taskList.model";
-import { TaskListService } from "./taskList.service";
-import { Task } from "../models/task.model";
+import { TaskList } from "../../models/taskList.model";
+import { TaskListService } from "../taskList/taskList.service";
+import { Task } from "../../models/task.model";
 
 @Injectable({
   providedIn: 'root'

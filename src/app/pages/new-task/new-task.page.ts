@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from 'src/app/services/task/task.service';
 import * as Parse from 'parse';
 import { parseISO } from 'date-fns';
-import { TaskListService } from 'src/app/services/taskList.service';
-import { User } from '../services/user.service';
+import { TaskListService } from 'src/app/services/taskList/taskList.service';
+import { User } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-new-task',

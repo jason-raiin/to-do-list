@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { TaskListService } from 'src/app/services/taskList.service';
-import { User } from 'src/app/services/user.service';
-import { TaskList } from '../models/taskList.model';
-import { Task } from '../models/task.model';
+import { TaskListService } from 'src/app/services/taskList/taskList.service';
+import { User } from 'src/app/services/user/user.service';
+import { TaskList } from '../../models/taskList.model';
+import { Task } from '../../models/task.model';
 import { Animation, createAnimation } from '@ionic/core';
 
 @Component({

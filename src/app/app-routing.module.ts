@@ -7,12 +7,12 @@ import { loginGuard } from './guards/login.guard';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [authGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
     canActivate: [loginGuard]
   },
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    loadChildren: () => import('./new-task/new-task.module').then( m => m.NewTaskPageModule)
+    loadChildren: () => import('./pages/new-task/new-task.module').then( m => m.NewTaskPageModule)
   },
 ];
 

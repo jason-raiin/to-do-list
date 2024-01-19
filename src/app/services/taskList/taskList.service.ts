@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TaskList } from '../models/taskList.model';
-import { TaskService } from './task.service';
-import { Task } from '../models/task.model';
-import { User } from './user.service';
+import { TaskList } from '../../models/taskList.model';
+import { TaskService } from '../task/task.service';
+import { Task } from '../../models/task.model';
+import { User } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
