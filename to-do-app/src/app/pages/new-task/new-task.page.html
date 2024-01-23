@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>New Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="width: 50%; margin: auto; text-align: center;">
+    <form [formGroup]="form" style="text-align: left;">
+      <ion-input 
+        label="Title" 
+        labelPlacement="floating" 
+        errorText="Title is required"
+        formControlName="title"
+      ></ion-input>
+      <ion-datetime 
+        presentation="date"
+        show-default-title="true"
+        formControlName="date" 
+        color="primary" 
+        style="margin: auto; margin-top:1%; margin-bottom: 1%;"
+      >
+        <span slot="title">Due Date</span>
+      </ion-datetime>
+    </form>
+    
+    <ion-button margin-right color="secondary" (click)="submit()" [disabled]="form.invalid" style="padding: 0.5%">
+      SUBMIT
+    </ion-button>
+
+    <ion-button (click)="cancel()" style="padding: 0.5%">
+      CANCEL
+    </ion-button>
+  </div>
+</ion-content>

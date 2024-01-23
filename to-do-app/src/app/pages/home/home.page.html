@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-grid style="padding-left: 1%; padding-right: 1%">
+      <ion-row style="align-items: center;">
+        <ion-col>
+          <ion-label> 
+            <h1>Hello, <ion-text color="primary">{{username}}</ion-text>!</h1>
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="ion-text-center">
+            <h1>Today</h1>
+            <p>{{today | date:'fullDate'}}</p>
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-button fill="solid" color="medium" style="float: right;" (click)="logOut()">Log Out</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card 
+    *ngFor="let task of taskList?.list; let i = index" 
+    [id]="i"
+    color="light" 
+    style="width: 50%; margin-left: auto; margin-right: auto; padding: 0.5%; border-radius: 15px;" 
+    [style]="task.complete ? 'opacity: 50%; text-decoration: line-through' : ''"
+  >
+    <ion-card-header>
+      <ion-card-title color="dark">{{task.title}}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-label [color]="task.date < today ? 'danger' : task.date === today ? 'warning' : 'dark' ">
+          Due {{task.date | date:'fullDate'}}
+        </ion-label>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-row>
+      <ion-col class="ion-text-left" style="padding-left:2%">
+        <ion-button [color]="task.complete ? 'medium' : 'success'" (click)="complete(task)">
+          <ion-icon [name]="task.complete ? 'close-circle-outline' : 'checkmark-circle-outline'" ></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col class="ion-text-right" style="padding-right:2%">
+        <ion-button color="danger" (click)="delete(task)">
+          <ion-icon name="trash-outline"></ion-icon> 
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin:1%">
+    <ion-fab-button (click)="addTask()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
