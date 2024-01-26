@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  PARSE_SERVER_URL: "http://localhost:1337/parse",
+  PARSE_APP_ID: "todo",
+  PARSE_MASTER_KEY: "supersecret",
 };
 
 /*

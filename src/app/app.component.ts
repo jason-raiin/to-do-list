@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as Parse from 'parse';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,8 @@ export class AppComponent {
   }
 
   initializeParse() {
-    Parse.initialize('todo', 'supersecret');
-    (Parse as any).serverURL = 'http://18.216.222.244:80/parse';
+    Parse.initialize(environment.PARSE_APP_ID);
+    (Parse as any).serverURL = environment.PARSE_SERVER_URL;
     console.log('Parse initialized!');
   }
 }
