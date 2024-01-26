@@ -13,7 +13,7 @@ export class AppComponent {
 
   initializeParse() {
     Parse.initialize('todo', 'supersecret');
-    (Parse as any).serverURL = 'http://localhost:1337/parse';
+    (Parse as any).serverURL = 'http://18.216.222.244:80/parse';
     console.log('Parse initialized!');
   }
 }
